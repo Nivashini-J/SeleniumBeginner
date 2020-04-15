@@ -35,6 +35,8 @@ public class TC1_Myntra {
 		//4) Find the total count of item (top) -> getText -> String
 		String total = driver.findElementByXPath("//span[@class='title-count']").getText();
 		System.out.println("Total count of item:"+total);
+		total = total.replaceAll("\\D", "");
+		int totalCount = Integer.parseInt(total);
 				
 		//5) Validate the sum of categories count matches
 		String jacketsCount = driver.findElementByXPath("(//span[@class='categories-num'])[1]").getText();
@@ -43,8 +45,13 @@ public class TC1_Myntra {
 		coatsCount = coatsCount.replaceAll("\\D", "");
 		int jCount = Integer.parseInt(jacketsCount);
 		int cCount = Integer.parseInt(coatsCount);
-		int totalCount = jCount + cCount;
-		System.out.println("Jackets count + Coats count = "+totalCount);
+		int jacketCoats = jCount + cCount;
+		
+		System.out.println("Jackets count + Coats count = "+jacketCoats);
+		if(totalCount==jacketCoats)
+			System.out.println("The sum of jackets and coats matches with the total.");
+		else
+			System.out.println("Count not matched.");
 		
 		//6) Check Coats
 		driver.findElementByXPath("(//label[@class='common-customCheckbox vertical-filters-label'])[2]").click();
@@ -76,7 +83,7 @@ public class TC1_Myntra {
 		//12) Find the price of first displayed item
 		List<WebElement> priceList = driver.findElementsByXPath("//span[@class='product-discountedPrice']");
 		String price = priceList.get(0).getText();
-		System.out.println("Price of the first displayed item:"+price);
+		System.out.println("Price of the first displayed item: "+price);
 			   
 		//13) Mouse over on size of the first item
 		WebElement eleSize = driver.findElementByXPath("(//div[@class='product-productMetaInfo'])[1]");
