@@ -1,16 +1,12 @@
 package day6.tc6;
 
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TC6_Bigbasket {
 
@@ -21,7 +17,7 @@ public class TC6_Bigbasket {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--disable-notifications");
 		ChromeDriver driver = new ChromeDriver(options);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		//WebDriverWait wait = new WebDriverWait(driver, 30);
 		
 		//1) Go to https://www.bigbasket.com/
 		driver.get("https://www.bigbasket.com/");
@@ -51,11 +47,8 @@ public class TC6_Bigbasket {
 		//6) Go to Ponni Boiled Rice - Super Premium and select 5kg bag from Dropdown
 		driver.findElementByXPath("(//button[@data-toggle='dropdown'])[4]").click();
 		Thread.sleep(5000);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("scroll(0, 250)");
 		
 		driver.findElementByXPath("(//ul[@class='dropdown-menu drop-select']//span[text()='5 kg'])[3]").click();
-
 		Thread.sleep(3000);
 		
 		//7) print the price of Rice
